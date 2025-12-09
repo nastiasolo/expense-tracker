@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Money Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="app-heading">Monthly Expense Tracker</h1>
+    <main>
+      <div class="expenses-total">
+        <div class="total-container">
+          <h2 class="total-heading">Income this month:</h2>
+          <p class="total-income"></p>
+        </div>
+        <div class="total-container">
+          <h2 class="total-heading">Total expenses this month:</h2>
+          <p class="total-expenses"></p>
+        </div>
+      </div>
+      <div class="form-container">
+        <form class="expense-form">
+          <div class="input-container">
+            <label id="form-label" for="expense">Create new expense:</label>
+            <input class="form-input" type="text" id="expense" name="expense" />
+          </div>
+          <div class="input-container">
+            <label id="form-label" for="amount">Add the amount:</label>
+            <input class="form-input" type="text" id="amount" name="amount" />
+          </div>
+          <div class="input-container">
+            <label id="form-label" for="category">Choose a category:</label>
+            <select class="form-input" name="category" id="category">
+              <option value="housing">Housing</option>
+              <option value="food">Food & Groceries</option>
+              <option value="transport">Transportation</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="shopping">Shopping</option>
+              <option value="education">Health</option>
+              <option value="utilities">Bills & Utilities</option>
+            </select>
+          </div>
+          <div class="input-container">
+            <label id="form-label" for="date">Choose a date:</label>
+            <input class="form-input" type="date" id="date" />
+          </div>
+          <button class="add-button" type="button">Add</button>
+        </form>
+      </div>
+      <div class="expenses-list-container">
+        <h3 class="expenses-list-heading">Your expenses this month:</h3>
+        <div class="expenses-list"></div>
+      </div>
+      <div class="expenses-by-category-container">
+        <h3 class="expenses-by-category-heading">Your expenses by category:</h3>
+        <div class="expenses-bar"></div>
+        <div class="expenses-bar-list"></div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
