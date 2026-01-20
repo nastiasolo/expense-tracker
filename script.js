@@ -101,19 +101,6 @@ const monthName = currentDate
 
 heading.textContent = `${monthName} EXPENSE TRACKER`;
 
-//INCOME PROMPT
-// let monthlyIncome = prompt("Enter your income for this month:");
-
-// if (
-//   monthlyIncome === null ||
-//   monthlyIncome.trim() === "" ||
-//   isNaN(monthlyIncome)
-// ) {
-//   monthlyIncome = 0;
-// }
-
-// monthlyIncome = parseFloat(monthlyIncome);
-
 const hasSavedData = loadFromStorage();
 
 if (!hasSavedData) {
