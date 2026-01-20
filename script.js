@@ -1,29 +1,4 @@
-// DYNAMIC HEADING
-const heading = document.querySelector(".app-heading");
-
-const currentDate = new Date();
-const monthName = currentDate
-  .toLocaleString("en-US", { month: "long" })
-  .toUpperCase();
-
-heading.textContent = `${monthName} EXPENSE TRACKER`;
-
-//INCOME PROMPT
-let monthlyIncome = prompt("Enter your income for this month:");
-
-if (
-  monthlyIncome === null ||
-  monthlyIncome.trim() === "" ||
-  isNaN(monthlyIncome)
-) {
-  monthlyIncome = 0;
-}
-
-monthlyIncome = parseFloat(monthlyIncome);
-
-document.querySelector(".total-income").textContent = `${monthlyIncome.toFixed(
-  2
-)} kr`;
+const STORAGE_KEY = "expense-tracker-data";
 
 const categoryLabels = {
   housing: "Housing",
@@ -45,6 +20,118 @@ const categoryColors = {
   utilities: "#FF9D23",
 };
 
+const allExpenses = [];
+console.log(allExpenses);
+
+function saveToStorage() {
+  const data = {
+    income: monthlyIncome,
+    expenses: allExpenses,
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function loadFromStorage() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return false;
+
+  const data = JSON.parse(saved);
+  monthlyIncome = data.income || 0;
+  allExpenses.push(...(data.expenses || []));
+
+  return true;
+}
+
+function renderAllExpenses() {
+  list.innerHTML = "";
+  allExpenses.forEach(renderExpense);
+}
+
+function renderExpense(expense) {
+  const { title, amount, category, date } = expense;
+  const { day, weekday } = formatDate(date);
+
+  let daySection = document.querySelector(`[data-day="${date}"]`);
+
+  if (!daySection) {
+    daySection = document.createElement("div");
+    daySection.className = "day-section";
+    daySection.dataset.day = date;
+
+    daySection.innerHTML = `
+      <div class="day-header">
+        <div class="day-date">
+          <span class="day-number">${day}</span>
+          <span class="day-name">${weekday}</span>
+        </div>
+        <span class="day-total">0 kr</span>
+      </div>
+      <div class="day-items"></div>
+    `;
+
+    list.appendChild(daySection);
+  }
+
+  const itemsContainer = daySection.querySelector(".day-items");
+
+  const item = document.createElement("div");
+  item.className = "expense-item";
+  item.innerHTML = `
+    <span class="expense-title">${title}</span>
+    <span class="expense-amount badge"
+      style="background-color:${categoryColors[category]}">
+      -${amount.toFixed(2)} kr
+    </span>
+  `;
+
+  itemsContainer.appendChild(item);
+
+  const totalEl = daySection.querySelector(".day-total");
+  const current = parseFloat(totalEl.textContent) || 0;
+  totalEl.textContent = `${(current - amount).toFixed(2)} kr`;
+}
+
+// DYNAMIC HEADING
+const heading = document.querySelector(".app-heading");
+
+const currentDate = new Date();
+const monthName = currentDate
+  .toLocaleString("en-US", { month: "long" })
+  .toUpperCase();
+
+heading.textContent = `${monthName} EXPENSE TRACKER`;
+
+//INCOME PROMPT
+// let monthlyIncome = prompt("Enter your income for this month:");
+
+// if (
+//   monthlyIncome === null ||
+//   monthlyIncome.trim() === "" ||
+//   isNaN(monthlyIncome)
+// ) {
+//   monthlyIncome = 0;
+// }
+
+// monthlyIncome = parseFloat(monthlyIncome);
+
+const hasSavedData = loadFromStorage();
+
+if (!hasSavedData) {
+  let input = prompt("Enter your income for this month:");
+
+  if (input === null || input.trim() === "" || isNaN(input)) {
+    monthlyIncome = 0;
+  } else {
+    monthlyIncome = parseFloat(input);
+  }
+
+  saveToStorage();
+}
+
+document.querySelector(".total-income").textContent = `${monthlyIncome.toFixed(
+  2,
+)} kr`;
+
 const dateInput = document.getElementById("date");
 
 const today = new Date();
@@ -59,8 +146,9 @@ const firstDay = `${yyyy}-${mm}-01`;
 const lastDay = `${yyyy}-${mm}-${new Date(
   yyyy,
   today.getMonth() + 1,
-  0
+  0,
 ).getDate()}`;
+console.log(lastDay + "last day");
 
 dateInput.min = firstDay;
 dateInput.max = lastDay;
@@ -91,64 +179,18 @@ addBtn.addEventListener("click", function () {
     return;
   }
 
-  // Saving to total
-  allExpenses.push({ category, amount });
+  const expense = { title, amount, category, date };
 
-  // updating
+  allExpenses.push(expense);
+  saveToStorage();
+
+  renderExpense(expense);
   updateCategorySummary();
 
-  const { day, weekday } = formatDate(date);
-
-  let daySection = document.querySelector(`[data-day="${date}"]`);
-
-  if (!daySection) {
-    daySection = document.createElement("div");
-    daySection.className = "day-section";
-    daySection.setAttribute("data-day", date);
-
-    daySection.innerHTML = `
-      <div class="day-header">
-         <div class="day-date">
-        <span class="day-number">${day}</span>
-        <span class="day-name">${weekday}</span>
-        </div>
-        <span class="day-total">0 kr</span>
-
-      </div>
-      <div class="day-items"></div>
-    `;
-
-    list.appendChild(daySection);
-  }
-
-  const itemsContainer = daySection.querySelector(".day-items");
-
-  // EXPENSE ITEM
-  const item = document.createElement("div");
-  item.className = "expense-item";
-  item.innerHTML = `
-    <span class="expense-title">${title}</span>
-    <span class="expense-amount badge" style="background-color: ${
-      categoryColors[category]
-    };">-${amount.toFixed(2)} kr</span>
-  `;
-
-  itemsContainer.appendChild(item);
-
-  // TOTAL PER DAY
-  const totalEl = daySection.querySelector(".day-total");
-  const currentTotal = parseFloat(totalEl.textContent) || 0;
-  const newTotal = currentTotal - amount;
-  totalEl.textContent = `${newTotal.toFixed(2)} kr`;
-
-  // CLEAR FORM
   expenseInput.value = "";
   amountInput.value = "";
   dateInput.value = "";
 });
-
-const allExpenses = [];
-console.log(allExpenses);
 
 function updateCategorySummary() {
   const bar = document.querySelector(".expenses-bar");
@@ -204,3 +246,6 @@ function updateCategorySummary() {
     list.appendChild(item);
   });
 }
+
+renderAllExpenses();
+updateCategorySummary();

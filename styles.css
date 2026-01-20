@@ -1,3 +1,11 @@
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 20px 50px;
   font-family: "Calibri", sans-serif;
@@ -11,12 +19,19 @@ body {
   font-size: 40px;
   display: table;
   background-color: white;
+  margin-bottom: 20px;
 }
 
 main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr, 2rf);
+
+  gap: 25px;
+}
+
+.total-and-form-container {
+  display: flex;
+  flex-direction: column;
   gap: 25px;
 }
 
@@ -33,9 +48,10 @@ main {
   padding: 25px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   color: white;
-  /* width: 450px; */
-  max-height: 150px;
+  gap: 25px;
+  height: fit-content;
 }
 
 .total-container {
@@ -92,22 +108,19 @@ label {
   cursor: pointer;
   border-radius: 5px;
 
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .add-button:hover {
   background-color: #ff5555;
 }
 
-.form-container {
-  grid-row-start: 2;
-}
-
 .expenses-list-container {
-  grid-row: span 2 / span 2;
   border-radius: 10px;
   border: 2px solid #ff5555;
-  padding: 10px 25px;
+  padding: 25px;
   background-color: white;
   opacity: 0.8;
 }
@@ -157,11 +170,14 @@ label {
   color: white;
 }
 
+.expenses-by-category-heading {
+  margin-bottom: 15px;
+}
+
 .expenses-by-category-container {
-  grid-row: span 2 / span 2;
   border-radius: 10px;
   border: 2px solid #ff5555;
-  padding: 10px 25px;
+  padding: 25px;
   background-color: white;
   opacity: 0.85;
 }
@@ -210,4 +226,25 @@ label {
 
 .category-title {
   font-size: 14px;
+}
+
+@media (max-width: 1250px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    margin: 15px;
+  }
+
+  .expenses-list-container {
+    padding: 15px;
+  }
+
+  .expenses-by-category-container {
+    padding: 15px;
+  }
 }
