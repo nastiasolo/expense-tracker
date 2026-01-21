@@ -2,12 +2,12 @@ const STORAGE_KEY = "expense-tracker-data";
 
 const categoryLabels = {
   housing: "Housing",
-  food: "Food & Groceries",
+  food: "Food",
   transport: "Transportation",
   entertainment: "Entertainment",
   shopping: "Shopping",
   health: "Health",
-  utilities: "Bills & Utilities",
+  utilities: "Utilities",
 };
 
 const categoryColors = {
