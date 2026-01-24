@@ -11,6 +11,7 @@ A simple **Expense Tracker** that lets you log daily spendings, categorize expen
 - See expenses broken down by category with a visual bar chart
 - Only allows adding expenses for the current month
 - Dynamic heading showing the current month
+- **LocalStorage** to save the data (income and expenses)
 
 ---
 ## 🔹 Screenshot
