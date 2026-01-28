@@ -1,3 +1,18 @@
+document.body.classList.add("loading");
+
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".loader-overlay");
+
+  setTimeout(() => {
+    loader.remove();
+    document.body.classList.remove("loading");
+
+    if (!hasSavedData) {
+      dialog.showModal();
+    }
+  }, 5000);
+});
+
 const STORAGE_KEY = "expense-tracker-data";
 
 const categoryLabels = {

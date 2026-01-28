@@ -8,6 +8,10 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <!-- LOADER -->
+    <div class="loader-overlay">
+      <img src="./images/loader.png" alt="Loading" class="loader-spinner" />
+    </div>
     <h1 class="app-heading">Monthly Expense Tracker</h1>
     <main>
       <div class="total-and-form-container">
@@ -67,10 +71,10 @@
       </div>
     </main>
 
+    <!-- DIALOG / MODAL  -->
     <dialog class="income-dialog">
       <form class="dialog-form" method="dialog">
         <h2>Enter your monthly income</h2>
-        <!-- <div class="income-input-container"> -->
         <input
           type="text"
           class="modal-input form-input"
@@ -79,7 +83,6 @@
         />
 
         <button class="add-button" value="confirm">Save</button>
-        <!-- </div> -->
       </form>
     </dialog>
   </body>

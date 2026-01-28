@@ -1,28 +1,29 @@
-.income-dialog {
-  border: none;
-  border-radius: 10px;
-  background-image: linear-gradient(
-    to top,
-    #569b17,
-    #5fa828,
-    #69b437,
-    #72c145,
-    #7bce53
-  );
-  padding: 25px;
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
-.income-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.7);
+.loader-spinner {
+  width: 30%;
+  animation: spinTwice 5s ease-in-out forwards;
 }
 
-.dialog-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+@keyframes spinTwice {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-720deg);
+  }
+}
+
+body.loading main {
+  visibility: hidden;
 }
 
 h1,
@@ -275,4 +276,31 @@ label {
   .expenses-by-category-container {
     padding: 15px;
   }
+}
+
+.income-dialog {
+  border: none;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to top,
+    #569b17,
+    #5fa828,
+    #69b437,
+    #72c145,
+    #7bce53
+  );
+  padding: 25px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.income-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
