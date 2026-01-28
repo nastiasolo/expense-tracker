@@ -121,10 +121,6 @@ const hasSavedData = loadFromStorage();
 const dialog = document.querySelector(".income-dialog");
 const dialogInput = dialog.querySelector("input");
 
-if (!hasSavedData) {
-  dialog.showModal();
-}
-
 dialog.addEventListener("close", () => {
   const value = parseFloat(dialogInput.value);
 
