@@ -103,17 +103,24 @@ heading.textContent = `${monthName} EXPENSE TRACKER`;
 
 const hasSavedData = loadFromStorage();
 
+const dialog = document.querySelector(".income-dialog");
+const dialogInput = dialog.querySelector("input");
+
 if (!hasSavedData) {
-  let input = prompt("Enter your income for this month:");
-
-  if (input === null || input.trim() === "" || isNaN(input)) {
-    monthlyIncome = 0;
-  } else {
-    monthlyIncome = parseFloat(input);
-  }
-
-  saveToStorage();
+  dialog.showModal();
 }
+
+dialog.addEventListener("close", () => {
+  const value = parseFloat(dialogInput.value);
+
+  if (isNaN(value) || value <= 0) return;
+
+  monthlyIncome = value;
+  saveToStorage();
+
+  document.querySelector(".total-income").textContent =
+    `${monthlyIncome.toFixed(2)} kr`;
+});
 
 document.querySelector(".total-income").textContent = `${monthlyIncome.toFixed(
   2,

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Money Tracker</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <h1 class="app-heading">Monthly Expense Tracker</h1>
@@ -65,6 +66,21 @@
         <div class="expenses-bar-list"></div>
       </div>
     </main>
-    <script src="script.js"></script>
+
+    <dialog class="income-dialog">
+      <form class="dialog-form" method="dialog">
+        <h2>Enter your monthly income</h2>
+        <!-- <div class="income-input-container"> -->
+        <input
+          type="text"
+          class="modal-input form-input"
+          placeholder="Income"
+          required
+        />
+
+        <button class="add-button" value="confirm">Save</button>
+        <!-- </div> -->
+      </form>
+    </dialog>
   </body>
 </html>
