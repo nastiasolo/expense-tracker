@@ -14,6 +14,7 @@ window.addEventListener("load", () => {
 });
 
 const STORAGE_KEY = "expense-tracker-data";
+let monthlyIncome = 0;
 
 const categoryLabels = {
   housing: "Housing",
@@ -124,7 +125,10 @@ const dialogInput = dialog.querySelector("input");
 dialog.addEventListener("close", () => {
   const value = parseFloat(dialogInput.value);
 
-  if (isNaN(value) || value <= 0) return;
+  if (isNaN(value) || value <= 0) {
+    dialog.showModal();
+    return;
+  }
 
   monthlyIncome = value;
   saveToStorage();
