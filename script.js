@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
     if (!hasSavedData) {
       dialog.showModal();
     }
-  }, 5000);
+  }, 3100);
 });
 
 const STORAGE_KEY = "expense-tracker-data";
@@ -99,10 +99,15 @@ function renderExpense(expense) {
   item.className = "expense-item";
   item.innerHTML = `
     <span class="expense-title">${title}</span>
+      <div class="expense-right">
     <span class="expense-amount badge"
       style="background-color:${categoryColors[category]}">
       -${amount.toFixed(2)} kr
     </span>
+    <button class="expense-delete" data-id="${expense.id}" aria-label="Delete">
+      ✕
+    </button>
+    </div>
   `;
 
   itemsContainer.appendChild(item);
@@ -193,7 +198,7 @@ addBtn.addEventListener("click", function () {
     return;
   }
 
-  const expense = { title, amount, category, date };
+  const expense = { id: crypto.randomUUID(), title, amount, category, date };
 
   allExpenses.push(expense);
   saveToStorage();
@@ -204,6 +209,21 @@ addBtn.addEventListener("click", function () {
   expenseInput.value = "";
   amountInput.value = "";
   dateInput.value = "";
+});
+
+list.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("expense-delete")) return;
+
+  const id = e.target.dataset.id;
+
+  const index = allExpenses.findIndex((exp) => exp.id === id);
+  if (index === -1) return;
+
+  allExpenses.splice(index, 1);
+
+  saveToStorage();
+  renderAllExpenses();
+  updateCategorySummary();
 });
 
 function updateCategorySummary() {

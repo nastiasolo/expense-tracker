@@ -10,7 +10,7 @@
 
 .loader-spinner {
   width: 30%;
-  animation: spinTwice 4s ease-in-out forwards;
+  animation: spinTwice 3s ease-in-out forwards;
 }
 
 @keyframes spinTwice {
@@ -18,7 +18,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(720deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -190,6 +190,25 @@ body.loading main {
   padding: 4px 14px;
   border-radius: 20px;
   color: white;
+}
+
+.expense-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.expense-delete {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.expense-delete:hover {
+  color: #e74c3c;
 }
 
 .expenses-by-category-heading {
