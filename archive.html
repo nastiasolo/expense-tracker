@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+  </head>
+  <body>
+    <div class="heading-container">
+      <h1 class="app-heading">Archive</h1>
+      <a
+        href="/index.html"
+        class="archive-button button"
+        data-tooltip="Click me and travel back to your current expenses & income"
+      >
+        <img
+          src="./images/piggy-bank.png"
+          alt="Main page"
+          class="archive-img"
+        />
+      </a>
+    </div>
+    <main class="archive-page">
+      <div class="expenses-list-container archive-expenses-list-container">
+        <h3 class="expenses-list-heading">Your expenses:</h3>
+        <div class="expenses-list"></div>
+      </div>
+      <div
+        class="expenses-by-category-container archive-expenses-by-category-container"
+      >
+        <h3 class="expenses-by-category-heading">Your expenses by category:</h3>
+        <div class="expenses-bar"></div>
+        <div class="expenses-bar-list"></div>
+      </div>
+    </main>
+  </body>
+</html>

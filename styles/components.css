@@ -10,7 +10,7 @@
 
 .loader-spinner {
   width: 30%;
-  animation: spinTwice 5s ease-in-out forwards;
+  animation: spinTwice 4s ease-in-out forwards;
 }
 
 @keyframes spinTwice {
@@ -18,7 +18,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-720deg);
+    transform: rotate(720deg);
   }
 }
 
@@ -26,46 +26,75 @@ body.loading main {
   visibility: hidden;
 }
 
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  margin: 20px 50px;
-  font-family: "Calibri", sans-serif;
-  background-image: url("./images/insung-yoon-Iw9Ld4ab8wo-unsplash.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.app-heading {
-  text-transform: uppercase;
-  font-size: 40px;
-  display: table;
-  background-color: white;
-  margin-bottom: 20px;
-}
-
-main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 25px;
-}
-
-.total-and-form-container {
+.archive-button {
+  width: 60px;
   display: flex;
-  flex-direction: column;
-  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 100px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+  padding: 3px;
+}
+
+.archive-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+}
+
+.archive-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% - 30px);
+  top: 50%;
+  transform: translateY(-20%);
+
+  background: #333;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  text-align: left;
+
+  z-index: 100;
+  width: 110px;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.archive-button::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: 6px solid transparent;
+  border-left-color: #333;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.archive-button:hover::after,
+.archive-button:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.archive-img {
+  width: 100%;
 }
 
 .expenses-total {
-  border-radius: 10px;
   background-image: linear-gradient(
     to top,
     #569b17,
@@ -74,7 +103,6 @@ main {
     #72c145,
     #7bce53
   );
-  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,7 +123,6 @@ main {
 }
 
 .expense-form {
-  border-radius: 10px;
   background-image: linear-gradient(
     to top,
     #ff937e,
@@ -104,11 +131,9 @@ main {
     #ff675e,
     #ff5555
   );
-  padding: 25px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* width: 450px; */
 }
 
 .input-container {
@@ -117,41 +142,10 @@ main {
   gap: 8px;
 }
 
-label {
-  color: white;
-}
-
-.form-input {
-  padding: 8px;
-  border-color: white;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: "Calibri", sans-serif;
-}
-
-.add-button {
-  color: white;
-  background-color: transparent;
-  border: 2px solid white;
-  padding: 10px 25px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: #ff5555;
-}
-
 .expenses-list-container {
-  border-radius: 10px;
   border: 2px solid #ff5555;
-  padding: 25px;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .expenses-list-heading {
@@ -195,7 +189,6 @@ label {
 .badge {
   padding: 4px 14px;
   border-radius: 20px;
-  /* background: linear-gradient(135deg, #4e7fff, #4556ff); */
   color: white;
 }
 
@@ -247,8 +240,8 @@ label {
 }
 
 .category-bar {
-  width: 40px; /* длина полоски */
-  height: 6px; /* толщина */
+  width: 40px;
+  height: 6px;
   border-radius: 4px;
   flex-shrink: 0;
 }
@@ -257,28 +250,8 @@ label {
   font-size: 14px;
 }
 
-@media (max-width: 1250px) {
-  main {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 800px) {
-  body {
-    margin: 15px;
-  }
-
-  .expenses-list-container {
-    padding: 15px;
-  }
-
-  .expenses-by-category-container {
-    padding: 15px;
-  }
-}
-
 .income-dialog {
+  width: 25%;
   border: none;
   border-radius: 10px;
   background-image: linear-gradient(
@@ -295,8 +268,14 @@ label {
   z-index: 1000;
 }
 
+@media (max-width: 800px) {
+  .income-dialog {
+    width: 80%;
+  }
+}
+
 .income-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .dialog-form {

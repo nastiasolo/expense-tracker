@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Money Tracker</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -12,7 +15,16 @@
     <div class="loader-overlay">
       <img src="./images/loader.png" alt="Loading" class="loader-spinner" />
     </div>
-    <h1 class="app-heading">Monthly Expense Tracker</h1>
+    <div class="heading-container">
+      <h1 class="app-heading">Monthly Expense Tracker</h1>
+      <a
+        href="/archive.html"
+        class="archive-button button"
+        data-tooltip="Click me and travel back in time to your expenses & income"
+      >
+        <img src="./images/archive.png" alt="Archive" class="archive-img" />
+      </a>
+    </div>
     <main>
       <div class="total-and-form-container">
         <div class="expenses-total">
@@ -56,7 +68,9 @@
               <label id="form-label" for="date">Choose a date:</label>
               <input class="form-input" type="date" id="date" />
             </div>
-            <button class="add-button" type="button">Add</button>
+            <button class="add-button styled-button button" type="button">
+              Add
+            </button>
           </form>
         </div>
       </div>
@@ -74,7 +88,12 @@
     <!-- DIALOG / MODAL  -->
     <dialog class="income-dialog">
       <form class="dialog-form" method="dialog">
-        <h2>Enter your monthly income</h2>
+        <p>
+          Welcome! 👋 This is your personal space to track income, expenses, and
+          all those “where did my money go?” moments.
+        </p>
+        <h3>Let’s start simple — enter your income for this month 💸</h3>
+
         <input
           type="text"
           class="modal-input form-input"
@@ -82,7 +101,9 @@
           required
         />
 
-        <button class="add-button" value="confirm">Save</button>
+        <button class="modal-button styled-button button" value="confirm">
+          Save
+        </button>
       </form>
     </dialog>
   </body>

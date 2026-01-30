@@ -1,0 +1,54 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.total-and-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+@media (max-width: 1250px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    margin: 15px;
+  }
+
+  .expenses-list-container {
+    padding: 15px;
+  }
+
+  .expenses-by-category-container {
+    padding: 15px;
+  }
+}
+
+.expenses-total,
+.expense-form,
+.expenses-list-container,
+.expenses-by-category-container {
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(252, 252, 252, 0.8);
+  padding: 10px;
+}
+
+.archive-page {
+  display: flex;
+  justify-content: space-between;
+}

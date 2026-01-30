@@ -60,7 +60,12 @@ function loadFromStorage() {
 
 function renderAllExpenses() {
   list.innerHTML = "";
-  allExpenses.forEach(renderExpense);
+
+  const sortedExpenses = [...allExpenses].sort(
+    (a, b) => new Date(b.date) - new Date(a.date),
+  );
+
+  sortedExpenses.forEach(renderExpense);
 }
 
 function renderExpense(expense) {
@@ -193,7 +198,7 @@ addBtn.addEventListener("click", function () {
   allExpenses.push(expense);
   saveToStorage();
 
-  renderExpense(expense);
+  renderAllExpenses();
   updateCategorySummary();
 
   expenseInput.value = "";
