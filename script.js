@@ -233,7 +233,10 @@ function updateCategorySummary() {
   bar.innerHTML = "";
   list.innerHTML = "";
 
-  if (allExpenses.length === 0) return;
+  if (allExpenses.length === 0) {
+    totalParagr.textContent = "0.00 kr";
+    return;
+  }
 
   const categoryTotals = {};
 
