@@ -66,7 +66,7 @@ expenses.forEach((exp) => {
   if (!grouped[year][monthIndex]) {
     grouped[year][monthIndex] = {
       name: monthName,
-      income, // пока общий, как у тебя
+      income,
       totalExpenses: 0,
       categories: {},
     };
@@ -86,33 +86,31 @@ function renderMonthBars(data, container) {
 
   const incomeWidth = (data.income / max) * 100;
 
-  // 🔹 INCOME BAR
-  const incomeBar = document.createElement("div");
-  incomeBar.className = "month-bar income-bar";
-  incomeBar.innerHTML = `
-    <div class="month-bar-income" style="width:${incomeWidth}%"></div>
-    <span class="bar-label">+${data.income.toFixed(2)} kr</span>
-  `;
+  // INCOME BAR
+  // const incomeBar = document.createElement("div");
+  // incomeBar.className = "month-bar income-bar";
+  // incomeBar.innerHTML = `
+  //   <div class="month-bar-income" style="width:${incomeWidth}%"></div>
+  // `;
 
-  // 🔹 EXPENSES BAR (по категориям)
+  // EXPENSES BAR
   const expensesBar = document.createElement("div");
   expensesBar.className = "month-bar expenses-bar";
 
   Object.entries(data.categories).forEach(([cat, amount]) => {
     const segment = document.createElement("div");
     segment.className = "expense-bar-segment";
-    segment.style.width = (amount / max) * 100 + "%";
     segment.style.backgroundColor = categoryColors[cat];
     expensesBar.appendChild(segment);
   });
 
-  const expensesLabel = document.createElement("span");
-  expensesLabel.className = "bar-label";
-  expensesLabel.textContent = `-${data.totalExpenses.toFixed(2)} kr`;
+  // const expensesLabel = document.createElement("span");
+  // expensesLabel.className = "bar-label";
+  // expensesLabel.textContent = `-${data.totalExpenses.toFixed(2)} kr`;
 
-  container.appendChild(incomeBar);
+  // container.appendChild(incomeBar);
   container.appendChild(expensesBar);
-  container.appendChild(expensesLabel);
+  // container.appendChild(expensesLabel);
 }
 
 Object.entries(grouped)

@@ -233,7 +233,7 @@ body.loading main {
 }
 
 .expense-bar-segment {
-  height: 100%;
+  width: 100%;
 }
 
 .expenses-bar-list {
@@ -312,5 +312,33 @@ body.loading main {
 }
 
 .month-bar-income {
-  background: linear-gradient(to right, #5fa828, #7bce53);
+  background-color: rgb(255, 217, 0);
+}
+
+.archive-expenses-list-heading {
+  margin-bottom: 10px;
+}
+
+.archive-month-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 10px;
+}
+
+.month-name {
+  font-weight: 800;
+  color: #e74c3c;
+}
+
+.month-saldo {
+  border-top: 1px solid black;
+  font-weight: 600;
+}
+
+.archive-month-block {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

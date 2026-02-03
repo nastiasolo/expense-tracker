@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .main-expenses {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -10,8 +16,37 @@
   gap: 25px;
 }
 
+.expenses-total,
+.expense-form,
+.expenses-list-container,
+.expenses-by-category-container {
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(252, 252, 252, 0.8);
+  padding: 10px;
+}
+
+.archive-page {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.archive-expenses-list-container,
+.archive-expenses-by-category-container {
+  width: 100%;
+}
+
 @media (max-width: 1250px) {
-  main {
+  .main-expenses,
+  .archive-page {
     display: flex;
     flex-direction: column;
   }
@@ -39,32 +74,4 @@
   .heading-container {
     padding: 5px;
   }
-}
-
-.expenses-total,
-.expense-form,
-.expenses-list-container,
-.expenses-by-category-container {
-  border-radius: 10px;
-  padding: 25px;
-}
-
-.heading-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  background-color: rgba(252, 252, 252, 0.8);
-  padding: 10px;
-}
-
-.archive-page {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.archive-expenses-list-container,
-.archive-expenses-by-category-container {
-  width: 100%;
 }
