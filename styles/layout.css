@@ -1,4 +1,4 @@
-main {
+.main-expenses {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
@@ -61,4 +61,10 @@ main {
 .archive-page {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+}
+
+.archive-expenses-list-container,
+.archive-expenses-by-category-container {
+  width: 100%;
 }

@@ -302,3 +302,15 @@ body.loading main {
   flex-direction: column;
   gap: 10px;
 }
+
+.month-bar {
+  display: flex;
+  height: 14px;
+  background: #eaeaea;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.month-bar-income {
+  background: linear-gradient(to right, #5fa828, #7bce53);
+}
