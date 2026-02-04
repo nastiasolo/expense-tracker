@@ -314,17 +314,20 @@ body.loading main {
 .archive-month-row {
   display: flex;
   flex-direction: column;
-  gap: 2px;
   margin-top: 10px;
+  gap: 4px;
 }
 
 .month-name {
   font-weight: 800;
   color: #e74c3c;
+  display: block;
+  padding-bottom: 8px;
 }
 
 .month-saldo {
   border-top: 1px solid black;
+  margin-top: 2px;
   font-weight: 600;
 }
 
