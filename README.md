@@ -5,13 +5,17 @@ A simple **Expense Tracker** that lets you log daily spendings, categorize expen
 ---
 ## 🔹 Features
 
-- Log your daily expenses
-- Categorize spending (Housing, Food, Transport, Entertainment, etc.)
-- View total expenses and income for the current month
-- See expenses broken down by category with a visual bar chart
-- Only allows adding expenses for the current month
-- Dynamic heading showing the current month
+- Log your monthly income
+- Categorize spendings (Housing, Food, Transport, Entertainment, etc.)
+- View total expenses and income for the current month, expenses broken down by category with a visual bar chart
+- Archive page with:
+  -	Expenses grouped by year and month
+  -	Monthly expense summaries
+  -	Category-based expense visualization for each month
 - **LocalStorage** to save the data (income and expenses)
+- Modular JavaScript files for logic separation
+- Deployed with GitHub Pages
+  
 
 ---
 ## 🔹 Screenshot
