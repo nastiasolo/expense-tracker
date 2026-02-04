@@ -229,7 +229,7 @@ body.loading main {
   background: #eaeaea;
   border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
 }
 
 .expense-bar-segment {
@@ -246,10 +246,8 @@ body.loading main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
   background: #ffffffcc;
   border-radius: 10px;
-  margin-bottom: 12px;
 }
 
 .category-bar-wrapper {
@@ -285,12 +283,6 @@ body.loading main {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-}
-
-@media (max-width: 800px) {
-  .income-dialog {
-    width: 80%;
-  }
 }
 
 .income-dialog::backdrop {
@@ -341,4 +333,10 @@ body.loading main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+@media (max-width: 800px) {
+  .income-dialog {
+    width: 80%;
+  }
 }

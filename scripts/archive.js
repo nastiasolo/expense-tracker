@@ -82,35 +82,50 @@ expenses.forEach((exp) => {
 });
 
 function renderMonthBars(data, container) {
-  const max = Math.max(data.income, data.totalExpenses) || 1;
+  const categories = data.categories;
+  const totalExpenses = Object.values(categories).reduce((a, b) => a + b, 0);
 
-  const incomeWidth = (data.income / max) * 100;
+  if (totalExpenses === 0) return;
 
-  // INCOME BAR
-  // const incomeBar = document.createElement("div");
-  // incomeBar.className = "month-bar income-bar";
-  // incomeBar.innerHTML = `
-  //   <div class="month-bar-income" style="width:${incomeWidth}%"></div>
-  // `;
+  const bar = document.createElement("div");
+  bar.className = "expenses-bar";
 
-  // EXPENSES BAR
-  const expensesBar = document.createElement("div");
-  expensesBar.className = "month-bar expenses-bar";
-
-  Object.entries(data.categories).forEach(([cat, amount]) => {
+  Object.entries(categories).forEach(([cat, amount]) => {
     const segment = document.createElement("div");
     segment.className = "expense-bar-segment";
+    segment.style.width = (amount / totalExpenses) * 100 + "%";
     segment.style.backgroundColor = categoryColors[cat];
-    expensesBar.appendChild(segment);
+    bar.appendChild(segment);
   });
 
-  // const expensesLabel = document.createElement("span");
-  // expensesLabel.className = "bar-label";
-  // expensesLabel.textContent = `-${data.totalExpenses.toFixed(2)} kr`;
+  container.appendChild(bar);
 
-  // container.appendChild(incomeBar);
-  container.appendChild(expensesBar);
-  // container.appendChild(expensesLabel);
+  const list = document.createElement("div");
+  list.className = "expenses-bar-list";
+
+  const maxAmount = Math.max(...Object.values(categories));
+
+  Object.entries(categories).forEach(([cat, amount]) => {
+    const widthPercent = (amount / maxAmount) * 100;
+
+    const item = document.createElement("div");
+    item.className = "expense-bar-item";
+
+    item.innerHTML = `
+      <div class="category-bar-wrapper">
+        <div class="category-bar"
+          style="background-color:${categoryColors[cat]};
+                 width:${widthPercent}%">
+        </div>
+        <span class="category-title">${categoryLabels[cat]}</span>
+      </div>
+      <p>${amount.toFixed(2)} kr</p>
+    `;
+
+    list.appendChild(item);
+  });
+
+  container.appendChild(list);
 }
 
 Object.entries(grouped)
@@ -125,7 +140,8 @@ Object.entries(grouped)
       .forEach(([_, data]) => {
         const monthBlock = document.createElement("div");
         monthBlock.className = "archive-month-block";
-        monthBlock.innerHTML = `<h3>${data.name}</h3>`;
+
+        monthBlock.innerHTML = `<h4>${data.name}</h4>`;
 
         renderMonthBars(data, monthBlock);
 
